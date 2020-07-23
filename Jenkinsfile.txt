@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+            sh 'mvn package'
+            archiveArtifacts artifacts: 'target/spring-petclinic-*.jar', fingerprint: true
+            }
+        }
+        stage('Test') {
+            steps {
+                junit 'target/surefirereport/*.xml'
+            }
+        }
+        stage('Copie') {
+            steps {
+                sh 'sudo rm -rf /var/www/target'
+                copieArtifacts (projectName: 'petclinic', selector: lastSuccessful())
+            }
+        }
+        stage('Deployed') {
+            steps {
+                sh 'sudo mv /var/www/target/spring-petclinic-*.jar /var/www/target/spring-petclinic-prod.jar'
+                sh 'sudo chown jenkins:root /var/www/target/spring-petclinic-prode.jar'
+                sh 'sudo systemctl restart petclinic.service'
+            }
+        }
+    }
+}
