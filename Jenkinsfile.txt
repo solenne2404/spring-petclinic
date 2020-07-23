@@ -22,7 +22,6 @@ pipeline {
         stage('Deployed') {
             steps {
                 sh 'sudo mv /var/www/target/spring-petclinic-*.jar /var/www/target/spring-petclinic-prod.jar'
-                sh 'sudo chown jenkins:root /var/www/target/spring-petclinic-prode.jar'
                 sh 'sudo systemctl restart petclinic.service'
             }
         }
