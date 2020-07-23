@@ -16,7 +16,7 @@ pipeline {
         stage('Copie') {
             steps {
                 sh 'sudo rm -rf /var/www/target'
-                copieArtifacts (projectName: 'petclinic', selector: lastSuccessful())
+                copieArtifacts (projectName: 'pet_clinic', selector: lastSuccessful())
             }
         }
         stage('Deployed') {
