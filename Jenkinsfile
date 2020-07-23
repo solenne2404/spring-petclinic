@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Copie') {
             steps {
-                sh 'sudo rm -rf /var/www/target'
+                sh 'sudo rm -rf /var/www/target/*.jar'
                 copieArtifacts (projectName: 'pet_clinic', selector: lastSuccessful())
             }
         }
