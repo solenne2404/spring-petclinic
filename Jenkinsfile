@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                junit 'target/surefirereport/*.xml'
+                junit 'target/surefire-reports/*.xml'
             }
         }
         stage('Copie') {
