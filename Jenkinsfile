@@ -2,17 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
-            steps {
-            sh 'mvn package'
-            archiveArtifacts artifacts: 'target/spring-petclinic-*.jar', fingerprint: true
-            }
-        }
-        stage('Test') {
-            steps {
-                junit 'target/surefire-reports/*.xml'
-            }
-        }
         stage('Copie') {
             steps {
                 sh 'sudo rm -rf /var/www/target/*.jar'
