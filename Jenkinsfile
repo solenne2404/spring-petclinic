@@ -10,7 +10,8 @@ pipeline {
     stage('Build') {
       steps {
         sh 'mvn -B jacoco:report checkstyle:checkstyle install'
-        archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+        // archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+        sh 'docker image save'
         sh 'docker build -t petclinic .'
       }
     }
