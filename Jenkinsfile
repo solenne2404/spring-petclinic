@@ -15,12 +15,12 @@ pipeline {
         sh 'docker build -t petclinic .'
       }
     }
-    stage('Publish Test Coverage Report and Code Analysis') {
-      steps {
-        jacoco()
-        recordIssues(tools: [checkStyle(), junitParser(), mavenConsole()])
-      }
-    }
+    //stage('Publish Test Coverage Report and Code Analysis') {
+      //steps {
+        //jacoco()
+        //recordIssues(tools: [checkStyle(), junitParser(), mavenConsole()])
+     // }
+    //}
     stage('Deploy') {
       steps {
          // copyArtefact....
